@@ -37,12 +37,12 @@
                     <a href="#" class="nav-link">Sign in</a>
                 </li>
                 <li class="nav-item">
-                    <button class="btn  btn-outline-secondary btn-lg text-info font-weight-bold ">
+                    <button class="btn  btn-outline-secondary btn-lg text-info font-weight-bold join-meeting">
                         Join the meeting
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-info btn-lg text-light font-weight-bold ">
+                    <button class="btn btn-info btn-lg text-light font-weight-bold new-meeting">
                         Start a meeting
                     </button>
                 </li>
@@ -59,7 +59,7 @@
                 <ul class="display-center justify-content-start pt-2">
                     <li style="padding: 0;">
                         <button style="background-color: #01796b;"
-                            class="btn btn-large text-light font-weight-bold display-center ">
+                            class="btn btn-large text-light font-weight-bold display-center new-meeting">
                             <span class="material-icons mr-2  ">video_call</span>
                             New Meeting
                         </button>
@@ -68,10 +68,10 @@
                         <button style="background-color: #fff;"
                             class="btn btn-outline-secondary btn-large text-dark font-weight-bold display-center ">
                             <span class="material-icons mr-2  ">keyboard</span>
-                            <input type="text" placeholder="Enter a Code" style="border:none">
+                            <input type="text" class="enter-code" placeholder="Enter a Code" style="border:none">
                         </button>
                     </li>
-                    <li class="text-dark font-weight-bold cursor-pointer pl-2">
+                    <li class="text-dark font-weight-bold cursor-pointer pl-2 join-action ">
                         Join
                     </li>
                 </ul>
@@ -86,6 +86,24 @@
             Learn more about <span class="learn-more text-info ">google meet</span> .
         </h6>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $(document).on("click", ".join-meeting", function () {
+                $(".enter-code").focus();
+            })
+            $(document).on("click", ".join-action", function () {
+                var join_val = $(".enter-code").val();
+                var meetingUrl = window.location.origin + "?meetingID=" + join_val;
+                window.location.replace(meetingUrl);
+            })
+            $(document).on("click", ".new-meeting", function () {
+                var newCodeID = Math.floor(Math.random() * 100000000)
+                var meetingUrl = window.location.origin + "?meetingID=" + newCodeID;
+                window.location.replace(meetingUrl);
+            })
+        })
+    </script>
 </body>
 
 </html>
